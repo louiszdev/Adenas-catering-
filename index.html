@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
     
     <style>
-        /* Premium Core Structure */
+        /* Premium Global Setup */
         * {
             margin: 0;
             padding: 0;
@@ -35,9 +35,10 @@
         }
 
         section {
-            padding: 70px 6%;
+            padding: 80px 5%;
             width: 100%;
             position: relative;
+            z-index: 10;
         }
 
         .section-title {
@@ -57,16 +58,16 @@
             margin-bottom: 10px;
         }
 
-        /* Fixed Premium Navigation Bar */
+        /* Fixed Navigation Bar */
         nav {
             position: fixed;
             top: 0; left: 0; width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 18px 6%;
+            padding: 20px 6%;
             z-index: 1000;
-            background: rgba(45, 5, 11, 0.9);
+            background: rgba(45, 5, 11, 0.95);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(212, 175, 55, 0.2);
@@ -81,7 +82,7 @@
             text-decoration: none;
         }
 
-        /* Hero Framework (Fixed Video Layer) */
+        /* BULLETPROOF VIDEO CANVAS LAYOUT */
         .hero {
             position: relative;
             height: 95vh;
@@ -91,25 +92,36 @@
             align-items: center;
             text-align: center;
             padding: 0 6%;
-            background: transparent; /* Allows video underneath to shine through */
+            background: transparent;
+        }
+
+        .video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
         }
 
         .hero-video {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            z-index: -5; /* Placed deep below the container layout */
-            filter: brightness(85%); 
+            filter: brightness(85%);
         }
 
         .hero-content {
-            background: rgba(45, 5, 11, 0.55);
-            padding: 35px 25px;
+            position: relative;
+            z-index: 5;
+            background: rgba(45, 5, 11, 0.65);
+            padding: 40px 25px;
             border-radius: 8px;
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             max-width: 750px;
-            border: 1px solid rgba(212, 175, 55, 0.15);
+            border: 1px solid rgba(212, 175, 55, 0.2);
         }
 
         .hero-content p {
@@ -129,7 +141,6 @@
             color: var(--text-light);
         }
 
-        /* Mobile Responsive Action Button */
         .btn-gold {
             display: inline-block;
             font-family: var(--sans);
@@ -147,7 +158,7 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.4);
         }
 
-        /* Tab Switcher Interface */
+        /* Tab Switcher Layout */
         .menu-container {
             width: 100%;
             max-width: 900px;
@@ -202,11 +213,7 @@
             margin-bottom: 8px;
         }
 
-        .item-header h3 {
-            font-size: 1.2rem;
-            font-weight: 400;
-        }
-
+        .item-header h3 { font-size: 1.2rem; font-weight: 400; }
         .item-tag {
             font-family: var(--sans);
             font-size: 0.65rem;
@@ -224,7 +231,7 @@
             line-height: 1.5;
         }
 
-        /* Adaptive Portfolio Grid */
+        /* Gallery Grid Layout */
         .gallery-grid {
             display: grid;
             grid-template-cols: 1fr;
@@ -253,51 +260,56 @@
         .gallery-overlay h4 { font-size: 1rem; color: var(--text-light); }
         .gallery-overlay p { font-family: var(--sans); font-size: 0.65rem; color: var(--gold-premium); text-transform: uppercase; }
 
-        /* Unified Direct Contact Dashboard */
+        /* ULTRA LUXURY ANTI-TACKY CONTACT DESIGN */
         .contact-dashboard {
             width: 100%;
-            max-width: 800px;
+            max-width: 650px;
             margin: 0 auto;
-            background: var(--wine-deep);
+            background: linear-gradient(to bottom, #390a11, #220307);
             border: 1px solid var(--gold-premium);
-            border-radius: 6px;
-            padding: 35px 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        }
-
-        .contact-info-block {
-            margin-bottom: 35px;
-            text-align: center;
+            border-radius: 8px;
+            padding: 40px 24px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
         }
 
         .info-row {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            text-align: center;
         }
 
         .info-row h4 {
             font-family: var(--sans);
             font-size: 0.75rem;
+            font-weight: 500;
             text-transform: uppercase;
             color: var(--gold-premium);
             letter-spacing: 2px;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
 
+        /* FIXED ONE-LINE INSTRUCTION SYSTEM */
         .info-row a, .info-row p {
-            font-size: 1.3rem;
+            display: block;
+            font-size: calc(1.1rem + 0.5vw); /* Dynamically shrinks slightly to match any tiny screen */
             color: var(--text-light);
             text-decoration: none;
-            word-break: break-all;
+            word-break: keep-all; /* Stays together */
+            white-space: nowrap; /* Prevents text wrap */
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
-        .info-row a:underline {
-            border-bottom: 1px dashed var(--gold-premium);
+        .info-row p.matrix-sub {
+            white-space: normal;
+            font-size: 1rem;
+            color: var(--text-muted);
+            line-height: 1.4;
         }
 
-        /* Premium Social Connect Core */
+        /* Social Layout Framework */
         .social-connect-box {
             border-top: 1px solid rgba(212, 175, 55, 0.2);
-            padding-top: 25px;
+            padding-top: 30px;
             text-align: center;
         }
 
@@ -307,13 +319,13 @@
             text-transform: uppercase;
             color: var(--gold-light);
             letter-spacing: 2px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .social-links-container {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 12px;
         }
 
         .social-link-btn {
@@ -324,14 +336,13 @@
             color: var(--wine-dark);
             background: var(--gold-premium);
             text-decoration: none;
-            padding: 12px 20px;
+            padding: 14px;
             border-radius: 4px;
             flex: 1;
-            max-width: 160px;
+            text-align: center;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
-        /* Corporate Footer */
         footer {
             background-color: #1a0206;
             padding: 40px 6%;
@@ -343,12 +354,11 @@
             letter-spacing: 1px;
         }
 
-        /* Medium & Large Screen Adaptations */
+        /* Desktop Adjustments */
         @media (min-width: 768px) {
             .gallery-grid { grid-template-cols: repeat(2, 1fr); }
             .hero-content h1 { font-size: 3.5rem; }
-            section { padding: 90px 10%; }
-            .social-link-btn { flex: none; }
+            section { padding: 100px 10%; }
         }
     </style>
 </head>
@@ -359,16 +369,18 @@
         <a href="https://www.instagram.com/adenas_catering" target="_blank" style="color: var(--gold-premium); font-family: var(--sans); font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1px;">Instagram ↗</a>
     </nav>
 
-    <section class="hero">
-        <video autoplay loop muted playsinline class="hero-video">
-            <source src="public/hero-cinematic.mp4" type="video/mp4">
-        </video>
+    <div class="hero">
+        <div class="video-container">
+            <video autoplay loop muted playsinline class="hero-video">
+                <source src="public/hero-cinematic.mp4" type="video/mp4">
+            </video>
+        </div>
         <div class="hero-content">
             <p>Connoisseurs of Elite Gastronomy</p>
             <h1>Unforgettable Culinary Artistry For Luxury Corporate & Private Events</h1>
             <a href="#inquire" class="btn-gold">Commission Our Services</a>
         </div>
-    </section>
+    </div>
 
     <section id="menu">
         <div class="section-title">
@@ -475,19 +487,17 @@
         </div>
         
         <div class="contact-dashboard">
-            <div class="contact-info-block">
-                <div class="info-row">
-                    <h4>Direct Placement Hotline</h4>
-                    <a href="tel:+1234567890">+123 456 7890</a>
-                </div>
-                <div class="info-row">
-                    <h4>Digital Concierge Mailbox</h4>
-                    <a href="mailto:bookings@adenascatering.com">bookings@adenascatering.com</a>
-                </div>
-                <div class="info-row">
-                    <h4>Catering Operational Matrix</h4>
-                    <p>Available For Domestic & International Elite Travel Bookings</p>
-                </div>
+            <div class="info-row">
+                <h4>Direct Placement Hotline</h4>
+                <a href="tel:+447438788712">+44 7438 788712</a>
+            </div>
+            <div class="info-row">
+                <h4>Digital Concierge Mailbox</h4>
+                <a href="mailto:bookings@adenascatering.com">bookings@adenascatering.com</a>
+            </div>
+            <div class="info-row">
+                <h4>Catering Operational Matrix</h4>
+                <p class="matrix-sub">Available For Domestic & International Elite Travel Bookings</p>
             </div>
 
             <div class="social-connect-box">
@@ -514,25 +524,19 @@
 
             Object.keys(tabs).forEach(tabId => {
                 const button = document.getElementById(tabId);
-                
-                // Triggers instantly on both phone touches and mouse clicks
-                function runSwitch(e) {
-                    e.preventDefault();
-                    
-                    // Remove active markers
-                    document.querySelectorAll('.menu-tabs button').forEach(btn => btn.classList.remove('active'));
-                    document.querySelectorAll('.menu-grid').forEach(grid => grid.classList.remove('active'));
-                    
-                    // Assign active markers to current elements
-                    button.classList.add('active');
-                    document.getElementById(tabs[tabId]).classList.add('active');
+                if(button) {
+                    function runSwitch(e) {
+                        e.preventDefault();
+                        document.querySelectorAll('.menu-tabs button').forEach(btn => btn.classList.remove('active'));
+                        document.querySelectorAll('.menu-grid').forEach(grid => grid.classList.remove('active'));
+                        button.classList.add('active');
+                        document.getElementById(tabs[tabId]).classList.add('active');
+                    }
+                    button.addEventListener('click', runSwitch);
+                    button.addEventListener('touchstart', runSwitch, {passive: false});
                 }
-
-                button.addEventListener('click', runSwitch);
-                button.addEventListener('touchstart', runSwitch, {passive: false});
             });
         });
     </script>
 </body>
-    </html>
-        
+</html>
