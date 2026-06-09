@@ -112,14 +112,14 @@
             filter: brightness(85%);
         }
 
-        /* FIXED ULTRA TRANSPARENT HERO CARD WITH SHADOW AND LIGHT FROSTING */
+        /* ULTRA TRANSPARENT HERO CARD */
         .hero-content {
             position: relative;
             z-index: 5;
-            background: rgba(10, 2, 4, 0.25); /* Dramatically lowered to 25% transparent smoke dark */
+            background: rgba(10, 2, 4, 0.25); 
             padding: 40px 25px;
             border-radius: 8px;
-            backdrop-filter: blur(6px); /* Frosting modifier lets video background move clearly behind text */
+            backdrop-filter: blur(6px); 
             -webkit-backdrop-filter: blur(6px);
             max-width: 750px;
             border: 1px solid rgba(212, 175, 55, 0.25);
@@ -142,7 +142,7 @@
             line-height: 1.3;
             margin-bottom: 30px;
             color: var(--text-light);
-            text-shadow: 0 2px 8px rgba(0,0,0,0.7); /* Ensures bold visibility over bright food shapes */
+            text-shadow: 0 2px 8px rgba(0,0,0,0.7); 
         }
 
         .btn-gold {
@@ -309,7 +309,7 @@
             line-height: 1.4;
         }
 
-        /* Social Layout Framework */
+        /* FIXED PREMIUM ICON LAYOUT FRAMEWORK */
         .social-connect-box {
             border-top: 1px solid rgba(212, 175, 55, 0.2);
             padding-top: 30px;
@@ -328,22 +328,35 @@
         .social-links-container {
             display: flex;
             justify-content: center;
-            gap: 12px;
+            gap: 20px;
         }
 
-        .social-link-btn {
-            font-family: var(--sans);
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            color: var(--wine-dark);
+        .social-icon-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            border: 1px solid var(--gold-premium);
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--gold-premium);
+            transition: all 0.3s ease;
+        }
+
+        /* Premium active state feedback */
+        .social-icon-btn:active, .social-icon-btn:hover {
             background: var(--gold-premium);
-            text-decoration: none;
-            padding: 14px;
-            border-radius: 4px;
-            flex: 1;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .social-icon-btn:active svg, .social-icon-btn:hover svg {
+            fill: var(--wine-dark);
         }
 
         footer {
@@ -506,8 +519,19 @@
             <div class="social-connect-box">
                 <h4>Follow The Artistry</h4>
                 <div class="social-links-container">
-                    <a href="https://www.instagram.com/adenas_catering" target="_blank" class="social-link-btn">Instagram Hub</a>
-                    <a href="https://facebook.com" target="_blank" class="social-link-btn" style="background: transparent; color: var(--gold-premium); border: 1px solid var(--gold-premium);">Facebook Page</a>
+                    
+                    <a href="https://www.instagram.com/adenas_catering" target="_blank" class="social-icon-btn" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+
+                    <a href="https://tr.ee/9v8Mb8ILqP" target="_blank" class="social-icon-btn" aria-label="TikTok">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.02 1.73 4.12 1.13 1.09 2.67 1.63 4.21 1.65v3.93c-1.5-.02-3-.5-4.22-1.41-.75-.56-1.37-1.28-1.83-2.12v7.74c.04 2.24-.92 4.43-2.62 5.88-1.99 1.69-4.8 2.22-7.24 1.34-2.45-.88-4.32-3.1-4.79-5.67-.62-3.37 1.13-6.81 4.25-8.08 1.13-.46 2.36-.61 3.56-.45v4.02c-.75-.2-1.55-.11-2.25.26-1.12.59-1.75 1.84-1.54 3.11.2 1.24 1.21 2.21 2.47 2.33 1.46.14 2.87-.83 3.15-2.27.08-.43.09-.87.09-1.31V.02z"/>
+                        </svg>
+                    </a>
+
                 </div>
             </div>
         </div>
@@ -530,17 +554,4 @@
                 if(button) {
                     function runSwitch(e) {
                         e.preventDefault();
-                        document.querySelectorAll('.menu-tabs button').forEach(btn => btn.classList.remove('active'));
-                        document.querySelectorAll('.menu-grid').forEach(grid => grid.classList.remove('active'));
-                        button.classList.add('active');
-                        document.getElementById(tabs[tabId]).classList.add('active');
-                    }
-                    button.addEventListener('click', runSwitch);
-                    button.addEventListener('touchstart', runSwitch, {passive: false});
-                }
-            });
-        });
-    </script>
-</body>
-                                          </html>
-                    
+                        document.querySelectorAll('.menu-tabs but
