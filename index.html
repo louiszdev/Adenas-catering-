@@ -4,420 +4,105 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Adena's Catering | Luxury Culinary Artisans</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,300;0,500;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     
-    <style>
-        /* Premium Global Setup */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Playfair Display', Georgia, serif;
-            -webkit-tap-highlight-color: transparent;
-        }
+    <style id="theme-styles">
+        /* Master Engine Foundations */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease; }
+        body { background-color: #2D050B; color: #FAFAFA; overflow-x: hidden; width: 100%; scroll-behavior: smooth; font-family: 'Playfair Display', serif; }
+        section { padding: 80px 6%; width: 100%; position: relative; z-index: 10; }
+        
+        /* Fixed Style Selector Toolbar */
+        #style-switcher-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: #111; border-top: 2px solid #D4AF37; z-index: 99999; padding: 10px; overflow-x: auto; white-space: nowrap; display: flex; gap: 8px; }
+        #style-switcher-bar button { background: #222; color: #ccc; border: 1px solid #444; padding: 8px 14px; font-family: 'Montserrat', sans-serif; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; border-radius: 4px; cursor: pointer; }
+        #style-switcher-bar button.active-style { background: #D4AF37; color: #111; border-color: #D4AF37; font-weight: 600; }
 
-        :root {
-            --wine-deep: #4A0E17; 
-            --wine-dark: #2D050B; 
-            --gold-premium: #D4AF37; 
-            --gold-light: #F3E5AB; 
-            --text-light: #FAFAFA;
-            --text-muted: #E0D0D2;
-            --sans: 'Montserrat', sans-serif;
-        }
+        /* Global Structural Core Elements */
+        nav { position: fixed; top: 0; left: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 20px 6%; z-index: 1000; background: rgba(45, 5, 11, 0.95); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
+        .logo { font-size: 1.2rem; font-weight: 600; letter-spacing: 2px; color: #D4AF37; text-transform: uppercase; text-decoration: none; }
+        
+        .hero { position: relative; height: 95vh; width: 100%; display: flex; justify-content: center; align-items: center; text-align: center; padding: 0 6%; }
+        .video-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; overflow: hidden; }
+        .hero-video { width: 100%; height: 100%; object-fit: cover; filter: brightness(85%); }
+        .hero-content { position: relative; z-index: 5; background: rgba(10, 2, 4, 0.25); padding: 40px 25px; border-radius: 8px; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); max-width: 750px; border: 1px solid rgba(212, 175, 55, 0.25); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6); }
+        .hero-content p { font-family: 'Montserrat', sans-serif; font-size: 0.85rem; letter-spacing: 4px; text-transform: uppercase; color: #D4AF37; margin-bottom: 15px; }
+        .hero-content h1 { font-size: 2.3rem; font-weight: 400; line-height: 1.3; margin-bottom: 30px; }
+        .btn-gold { display: inline-block; font-family: 'Montserrat', sans-serif; padding: 16px 32px; background: #4A0E17; color: #FAFAFA; border: 1px solid #D4AF37; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; border-radius: 4px; font-weight: 600; text-decoration: none; }
 
-        html, body {
-            background-color: var(--wine-dark);
-            color: var(--text-light);
-            overflow-x: hidden;
-            width: 100%;
-            scroll-behavior: smooth;
-        }
+        .section-title { text-align: center; font-size: 2.2rem; font-weight: 400; margin-bottom: 35px; }
+        .section-title span { font-family: 'Montserrat', sans-serif; display: block; font-size: 0.8rem; text-transform: uppercase; color: #D4AF37; letter-spacing: 3px; margin-bottom: 10px; }
 
-        section {
-            padding: 80px 5%;
-            width: 100%;
-            position: relative;
-            z-index: 10;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.2rem;
-            font-weight: 400;
-            margin-bottom: 35px;
-        }
-
-        .section-title span {
-            font-family: var(--sans);
-            display: block;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            color: var(--gold-premium);
-            letter-spacing: 3px;
-            margin-bottom: 10px;
-        }
-
-        /* FIXED NAV WITH ELEGANT SMOOTH ENTRANCE ANIMATION */
-        nav {
-            position: fixed;
-            top: 0; left: 0; width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 6%;
-            z-index: 1000;
-            background: rgba(45, 5, 11, 0.95);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-            
-            /* Luxury Entrance Config */
-            animation: elegantFadeDown 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-            opacity: 0;
-            transform: translateY(-10px);
-        }
-
-        @keyframes elegantFadeDown {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .logo {
-            font-size: 1.2rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            color: var(--gold-premium);
-            text-transform: uppercase;
-            text-decoration: none;
-            transition: color 0.4s ease;
-        }
-
-        .logo:hover {
-            color: var(--text-light);
-        }
-
-        /* VIDEO CANVAS LAYOUT */
-        .hero {
-            position: relative;
-            height: 95vh;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 6%;
-            background: transparent;
-        }
-
-        .video-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            overflow: hidden;
-        }
-
-        .hero-video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(85%);
-        }
-
-        /* ULTRA TRANSPARENT HERO CARD */
-        .hero-content {
-            position: relative;
-            z-index: 5;
-            background: rgba(10, 2, 4, 0.25); 
-            padding: 40px 25px;
-            border-radius: 8px;
-            backdrop-filter: blur(6px); 
-            -webkit-backdrop-filter: blur(6px);
-            max-width: 750px;
-            border: 1px solid rgba(212, 175, 55, 0.25);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-        }
-
-        .hero-content p {
-            font-family: var(--sans);
-            font-size: 0.85rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: var(--gold-premium);
-            margin-bottom: 15px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
-        }
-
-        .hero-content h1 {
-            font-size: 2.3rem;
-            font-weight: 400;
-            line-height: 1.3;
-            margin-bottom: 30px;
-            color: var(--text-light);
-            text-shadow: 0 2px 8px rgba(0,0,0,0.7); 
-        }
-
-        .btn-gold {
-            display: inline-block;
-            font-family: var(--sans);
-            padding: 16px 32px;
-            background: var(--wine-deep);
-            color: var(--text-light);
-            border: 1px solid var(--gold-premium);
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            cursor: pointer;
-            border-radius: 4px;
-            font-weight: 600;
-            text-decoration: none;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-        }
-
-        /* Tab Switcher Layout */
-        .menu-container {
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .menu-tabs {
-            display: flex;
-            justify-content: space-between;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-            margin-bottom: 30px;
-        }
-
-        .tab-btn {
-            flex: 1;
-            text-align: center;
-            font-family: var(--sans);
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            padding: 15px 5px;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .tab-btn.active {
-            color: var(--gold-premium);
-            border-bottom: 3px solid var(--gold-premium);
-            font-weight: 600;
-        }
-
-        .menu-grid {
-            display: none;
-        }
-
-        .menu-grid.active {
-            display: block;
-        }
-
-        .menu-item {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 20px 0;
-        }
-
-        .item-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-
+        .menu-container { width: 100%; max-width: 900px; margin: 0 auto; }
+        .menu-tabs { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(212, 175, 55, 0.2); margin-bottom: 30px; }
+        .tab-btn { flex: 1; text-align: center; font-family: 'Montserrat', sans-serif; background: transparent; border: none; color: #E0D0D2; padding: 15px 5px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; border-bottom: 3px solid transparent; }
+        .tab-btn.active { color: #D4AF37; border-bottom: 3px solid #D4AF37; font-weight: 600; }
+        .menu-grid { display: none; }
+        .menu-grid.active { display: block; }
+        .menu-item { border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding: 20px 0; }
+        .item-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
         .item-header h3 { font-size: 1.2rem; font-weight: 400; }
-        .item-tag {
-            font-family: var(--sans);
-            font-size: 0.65rem;
-            color: var(--gold-premium);
-            text-transform: uppercase;
-            padding: 2px 6px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 2px;
-        }
+        .item-tag { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; color: #D4AF37; text-transform: uppercase; padding: 2px 6px; border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 2px; }
+        .menu-item p { font-family: 'Montserrat', sans-serif; font-size: 0.85rem; color: #E0D0D2; line-height: 1.5; }
 
-        .menu-item p {
-            font-family: var(--sans);
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
+        .gallery-grid { display: grid; grid-template-cols: 1fr; gap: 15px; }
+        .gallery-item { position: relative; height: 250px; overflow: hidden; border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 4px; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+        .gallery-overlay { position: absolute; bottom: 0; left: 0; width: 100%; background: linear-gradient(transparent, rgba(45, 5, 11, 0.95)); padding: 15px; }
+        .gallery-overlay h4 { font-size: 1rem; color: #FAFAFA; }
+        .gallery-overlay p { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; color: #D4AF37; text-transform: uppercase; }
 
-        /* Gallery Grid Layout */
-        .gallery-grid {
-            display: grid;
-            grid-template-cols: 1fr;
-            gap: 15px;
-        }
-
-        .gallery-item {
-            position: relative;
-            height: 250px;
-            overflow: hidden;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 4px;
-        }
-
-        .gallery-item img {
-            width: 100%; height: 100%; object-fit: cover;
-        }
-
-        .gallery-overlay {
-            position: absolute;
-            bottom: 0; left: 0; width: 100%;
-            background: linear-gradient(transparent, rgba(45, 5, 11, 0.95));
-            padding: 15px;
-        }
-
-        .gallery-overlay h4 { font-size: 1rem; color: var(--text-light); }
-        .gallery-overlay p { font-family: var(--sans); font-size: 0.65rem; color: var(--gold-premium); text-transform: uppercase; }
-
-        /* CONTACT DASHBOARD DESIGN */
-        .contact-dashboard {
-            width: 100%;
-            max-width: 650px;
-            margin: 0 auto;
-            background: linear-gradient(to bottom, #390a11, #220307);
-            border: 1px solid var(--gold-premium);
-            border-radius: 8px;
-            padding: 40px 24px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-        }
-
-        .info-row {
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .info-row h4 {
-            font-family: var(--sans);
-            font-size: 0.75rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            color: var(--gold-premium);
-            letter-spacing: 2px;
-            margin-bottom: 8px;
-        }
-
-        .info-row a, .info-row p {
-            display: block;
-            font-size: calc(1.1rem + 0.5vw); 
-            color: var(--text-light);
-            text-decoration: none;
-            word-break: keep-all; 
-            white-space: nowrap; 
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .info-row p.matrix-sub {
-            white-space: normal;
-            font-size: 1rem;
-            color: var(--text-muted);
-            line-height: 1.4;
-        }
-
-        /* PREMIUM ICON LAYOUT FRAMEWORK */
-        .social-connect-box {
-            border-top: 1px solid rgba(212, 175, 55, 0.2);
-            padding-top: 30px;
-            text-align: center;
-        }
-
-        .social-connect-box h4 {
-            font-family: var(--sans);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            color: var(--gold-light);
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-        }
-
-        .social-links-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .social-icon-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            border: 1px solid var(--gold-premium);
-            background: transparent;
-            transition: all 0.3s ease;
-        }
-
-        .social-icon-btn svg {
-            width: 24px;
-            height: 24px;
-            fill: var(--gold-premium);
-            transition: all 0.3s ease;
-        }
-
-        .social-icon-btn:active, .social-icon-btn:hover {
-            background: var(--gold-premium);
-        }
-
-        .social-icon-btn:active svg, .social-icon-btn:hover svg {
-            fill: var(--wine-dark);
-        }
-
-        footer {
-            background-color: #1a0206;
-            padding: 40px 6%;
-            border-top: 1px solid rgba(212, 175, 55, 0.15);
-            text-align: center;
-            font-family: var(--sans);
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            letter-spacing: 1px;
-        }
-
-        /* Desktop Adjustments */
-        @media (min-width: 768px) {
-            .gallery-grid { grid-template-cols: repeat(2, 1fr); }
-            .hero-content h1 { font-size: 3.5rem; }
-            section { padding: 100px 10%; }
-        }
+        .contact-dashboard { width: 100%; max-width: 650px; margin: 0 auto; background: linear-gradient(to bottom, #390a11, #220307); border: 1px solid #D4AF37; border-radius: 8px; padding: 40px 24px; box-shadow: 0 15px 35px rgba(0,0,0,0.4); }
+        .info-row { margin-bottom: 30px; text-align: center; }
+        .info-row h4 { font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 500; text-transform: uppercase; color: #D4AF37; letter-spacing: 2px; margin-bottom: 8px; }
+        .info-row a, .info-row p { display: block; font-size: calc(1.1rem + 0.5vw); color: #FAFAFA; text-decoration: none; word-break: keep-all; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .info-row p.matrix-sub { white-space: normal; font-size: 1rem; color: #E0D0D2; line-height: 1.4; }
+        
+        .social-connect-box { border-top: 1px solid rgba(212, 175, 55, 0.2); padding-top: 30px; text-align: center; }
+        .social-connect-box h4 { font-family: 'Montserrat', sans-serif; font-size: 0.8rem; text-transform: uppercase; color: #F3E5AB; letter-spacing: 2px; margin-bottom: 20px; }
+        .social-links-container { display: flex; justify-content: center; gap: 20px; }
+        .social-icon-btn { display: flex; align-items: center; justify-content: center; width: 55px; height: 55px; border-radius: 50%; border: 1px solid #D4AF37; background: transparent; }
+        .social-icon-btn svg { width: 24px; height: 24px; fill: #D4AF37; }
+        
+        footer { background-color: #1a0206; padding: 40px 6% 100px 6%; border-top: 1px solid rgba(212, 175, 55, 0.15); text-align: center; font-family: 'Montserrat', sans-serif; font-size: 0.75rem; color: #E0D0D2; letter-spacing: 1px; }
+        @media (min-width: 768px) { .gallery-grid { grid-template-cols: repeat(2, 1fr); } }
     </style>
 </head>
 <body>
 
-    <nav>
-        <a href="#" class="logo">Adena's</a>
-        <a href="https://www.instagram.com/adenas_catering" target="_blank" style="color: var(--gold-premium); font-family: var(--sans); font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1px;">Instagram ↗</a>
+    <div id="style-switcher-bar">
+        <button id="s1" class="active-style" onclick="applyArchitecture(1, this)">1. Editorial Lookbook</button>
+        <button id="s2" onclick="applyArchitecture(2, this)">2. Corporate Wine Noir</button>
+        <button id="s3" onclick="applyArchitecture(3, this)">3. Minimalist Ivory</button>
+        <button id="s4" onclick="applyArchitecture(4, this)">4. Asymmetric Boutique</button>
+        <button id="s5" onclick="applyArchitecture(5, this)">5. Cinematic Split</button>
+        <button id="s6" onclick="applyArchitecture(6, this)">6. Royal Flagship</button>
+        <button id="s7" onclick="applyArchitecture(7, this)">7. Modern Vanguard</button>
+        <button id="s8" onclick="applyArchitecture(8, this)">8. Midnight Velvet</button>
+        <button id="s9" onclick="applyArchitecture(9, this)">9. Baroque Gold Palace</button>
+        <button id="s10" onclick="applyArchitecture(10, this)">10. Clean Tech Minimal</button>
+    </div>
+
+    <nav id="master-nav">
+        <a href="#" class="logo" id="nav-brand-logo">Adena's</a>
+        <a href="https://www.instagram.com/adenas_catering" target="_blank" style="color: #D4AF37; font-family: 'Montserrat', sans-serif; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1px;">Instagram ↗</a>
     </nav>
 
-    <div class="hero">
+    <div class="hero" id="hero-section">
         <div class="video-container">
             <video autoplay loop muted playsinline class="hero-video">
                 <source src="public/hero-cinematic.mp4" type="video/mp4">
             </video>
         </div>
-        <div class="hero-content">
-            <p>Connoisseurs of Elite Gastronomy</p>
-            <h1>Unforgettable Culinary Artistry For Luxury Corporate & Private Events</h1>
-            <a href="#inquire" class="btn-gold">Commission Our Services</a>
+        <div class="hero-content" id="hero-card">
+            <p id="hero-tagline">Connoisseurs of Elite Gastronomy</p>
+            <h1 id="hero-title">Unforgettable Culinary Artistry For Luxury Corporate & Private Events</h1>
+            <a href="#inquire" class="btn-gold" id="hero-btn">Commission Our Services</a>
         </div>
     </div>
 
     <section id="menu">
         <div class="section-title">
-            <span>Gastronomy Portfolio</span>
+            <span id="menu-subtitle">Gastronomy Portfolio</span>
             Curated Culinary Concepts
         </div>
         <div class="menu-container">
@@ -429,87 +114,49 @@
 
             <div id="cat-corporate" class="menu-grid active">
                 <div class="menu-item">
-                    <div class="item-header">
-                        <h3>The Boardroom Executive</h3>
-                        <span class="item-tag">Plated</span>
-                    </div>
+                    <div class="item-header"><h3>The Boardroom Executive</h3><span class="item-tag">Plated</span></div>
                     <p>Artisanal micro-greens salad, truffle-infused chicken breast, and saffron wild rice paired with heirloom baby carrots.</p>
                 </div>
                 <div class="menu-item">
-                    <div class="item-header">
-                        <h3>Artisan Charcuterie Spread</h3>
-                        <span class="item-tag">Grazing Layout</span>
-                    </div>
+                    <div class="item-header"><h3>Artisan Charcuterie Spread</h3><span class="item-tag">Grazing Layout</span></div>
                     <p>Imported cave-aged cheeses, cured prosciutto, organic honeycomb, dynamic seasonal fruits, and house-baked crisps.</p>
                 </div>
             </div>
 
             <div id="cat-private" class="menu-grid">
                 <div class="menu-item">
-                    <div class="item-header">
-                        <h3>Pan-Seared Chilean Sea Bass</h3>
-                        <span class="item-tag">7-Course Premium</span>
-                    </div>
+                    <div class="item-header"><h3>Pan-Seared Chilean Sea Bass</h3><span class="item-tag">7-Course Premium</span></div>
                     <p>Served over a bed of parsnip purée, blistered cherry tomatoes, and a delicate citrus-champagne reduction.</p>
                 </div>
                 <div class="menu-item">
-                    <div class="item-header">
-                        <h3>Wagyu Beef Tenderloin</h3>
-                        <span class="item-tag">Signature Dinner</span>
-                    </div>
+                    <div class="item-header"><h3>Wagyu Beef Tenderloin</h3><span class="item-tag">Signature Dinner</span></div>
                     <p>Perfectly seared A5 Wagyu with a rich bone marrow glaze, wild chanterelle mushrooms, and gold leaf garnish.</p>
                 </div>
             </div>
 
             <div id="cat-platters" class="menu-grid">
                 <div class="menu-item">
-                    <div class="item-header">
-                        <h3>The Caviar & Seafood Tower</h3>
-                        <span class="item-tag">Gourmet Drop-Off</span>
-                    </div>
+                    <div class="item-header"><h3>The Caviar & Seafood Tower</h3><span class="item-tag">Gourmet Drop-Off</span></div>
                     <p>Oysters on the half shell, chilled poached prawns, king crab legs, served with premium Oscietra caviar.</p>
                 </div>
                 <div class="menu-item">
-                    <div class="item-header">
-                        <h3>The Sweet Decadence Box</h3>
-                        <span class="item-tag">Luxury Box</span>
-                    </div>
+                    <div class="item-header"><h3>The Sweet Decadence Box</h3><span class="item-tag">Luxury Box</span></div>
                     <p>Handcrafted macarons, gold-dusted dark chocolate truffles, and fresh organic berries with vanilla bean dip.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="gallery" style="background-color: var(--wine-deep);">
+    <section id="gallery">
         <div class="section-title">
             <span>Visual Craftsmanship</span>
             The Experience Gallery
         </div>
         <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="public/gallery1.jpg" alt="Adena Luxury Catering Setup">
-                <div class="gallery-overlay">
-                    <h4>Corporate Galas</h4><p>Event Design</p>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="public/gallery2.jpg" alt="Adena Gourmet Grazing Table">
-                <div class="gallery-overlay">
-                    <h4>Luxury Platters</h4><p>Artisanal Styling</p>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="public/gallery3.jpg" alt="Adena Fine Plated Course">
-                <div class="gallery-overlay">
-                    <h4>Private Dinners</h4><p>Gourmet Plating</p>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="public/gallery4.jpg" alt="Adena Hospitality Reception">
-                <div class="gallery-overlay">
-                    <h4>Champagne Service</h4><p>Elite Hospitality</p>
-                </div>
-            </div>
+            <div class="gallery-item"><img src="public/gallery1.jpg" alt="Setup"><div class="gallery-overlay"><h4>Corporate Galas</h4><p>Event Design</p></div></div>
+            <div class="gallery-item"><img src="public/gallery2.jpg" alt="Grazing"><div class="gallery-overlay"><h4>Luxury Platters</h4><p>Artisanal Styling</p></div></div>
+            <div class="gallery-item"><img src="public/gallery3.jpg" alt="Plated"><div class="gallery-overlay"><h4>Private Dinners</h4><p>Gourmet Plating</p></div></div>
+            <div class="gallery-item"><img src="public/gallery4.jpg" alt="Reception"><div class="gallery-overlay"><h4>Champagne Service</h4><p>Elite Hospitality</p></div></div>
         </div>
     </section>
 
@@ -519,7 +166,7 @@
             Secure Your Date
         </div>
         
-        <div class="contact-dashboard">
+        <div class="contact-dashboard" id="contact-board">
             <div class="info-row">
                 <h4>Direct Placement Hotline</h4>
                 <a href="tel:+447438788712">+44 7438 788712</a>
@@ -536,23 +183,60 @@
             <div class="social-connect-box">
                 <h4>Follow The Artistry</h4>
                 <div class="social-links-container">
-                    
                     <a href="https://www.instagram.com/adenas_catering" target="_blank" class="social-icon-btn" aria-label="Instagram">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                     </a>
-
+                    
                     <a href="https://vm.tiktok.com/ZS92EXEm81dRf-MW8he/" target="_blank" class="social-icon-btn" aria-label="TikTok">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.02 1.73 4.12 1.13 1.09 2.67 1.63 4.21 1.65v3.93c-1.5-.02-3-.5-4.22-1.41-.75-.56-1.37-1.28-1.83-2.12v7.74c.04 2.24-.92 4.43-2.62 5.88-1.99 1.69-4.8 2.22-7.24 1.34-2.45-.88-4.32-3.1-4.79-5.67-.62-3.37 1.13-6.81 4.25-8.08 1.13-.46 2.36-.61 3.56-.45v4.02c-.75-.2-1.55-.11-2.25.26-1.12.59-1.75 1.84-1.54 3.11.2 1.24 1.21 2.21 2.47 2.33 1.46.14 2.87-.83 3.15-2.27.08-.43.09-.87.09-1.31V.02z"/>
-                        </svg>
+                        <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.02 1.73 4.12 1.13 1.09 2.67 1.63 4.21 1.65v3.93c-1.5-.02-3-.5-4.22-1.41-.75-.56-1.37-1.28-1.83-2.12v7.74c.04 2.24-.92 4.43-2.62 5.88-1.99 1.69-4.8 2.22-7.24 1.34-2.45-.88-4.32-3.1-4.79-5.67-.62-3.37 1.13-6.81 4.25-8.08 1.13-.46 2.36-.61 3.56-.45v4.02c-.75-.2-1.55-.11-2.25.26-1.12.59-1.75 1.84-1.54 3.11.2 1.24 1.21 2.21 2.47 2.33 1.46.14 2.87-.83 3.15-2.27.08-.43.09-.87.09-1.31V.02z"/></svg>
                     </a>
-
                 </div>
             </div>
         </div>
     </section>
 
     <footer>
-        &copy; 2026 Adena's Catering. High-End Event Gastronom
+        &copy; 2026 Adena's Catering. High-End Event Gastronomy. All Rights Reserved.
+    </footer>
+
+    <script>
+        function switchMenu(categoryName) {
+            var menuGrids = document.getElementsByClassName('menu-grid');
+            for (var i = 0; i < menuGrids.length; i++) { menuGrids[i].classList.remove('active'); }
+            var tabButtons = document.getElementsByClassName('tab-btn');
+            for (var j = 0; j < tabButtons.length; j++) { tabButtons[j].classList.remove('active'); }
+            
+            document.getElementById('cat-' + categoryName).classList.add('active');
+            document.getElementById('tab-' + categoryName).classList.add('active');
+        }
+
+        function applyArchitecture(styleNumber, element) {
+            // Manage Active Class Highlight on Buttons
+            var switcherButtons = document.querySelectorAll('#style-switcher-bar button');
+            switcherButtons.forEach(function(btn) { btn.classList.remove('active-style'); });
+            element.classList.add('active-style');
+
+            var styleTag = document.getElementById('theme-styles');
+            var baseCss = `
+                * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+                #style-switcher-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: #111; border-top: 2px solid #D4AF37; z-index: 99999; padding: 10px; overflow-x: auto; white-space: nowrap; display: flex; gap: 8px; }
+                #style-switcher-bar button { background: #222; color: #ccc; border: 1px solid #444; padding: 8px 14px; font-family: 'Montserrat', sans-serif; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; border-radius: 4px; cursor: pointer; }
+                #style-switcher-bar button.active-style { background: #D4AF37; color: #111; border-color: #D4AF37; font-weight: 600; }
+                section { padding: 80px 6%; width: 100%; position: relative; z-index: 10; }
+                .menu-container { width: 100%; max-width: 900px; margin: 0 auto; }
+                .menu-tabs { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(212, 175, 55, 0.2); margin-bottom: 30px; }
+                .tab-btn { flex: 1; text-align: center; padding: 15px 5px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; border: none; background: transparent; }
+                .menu-grid { display: none; }
+                .menu-grid.active { display: block; }
+                .menu-item { border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding: 20px 0; }
+                .item-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+                .item-tag { font-size: 0.65rem; text-transform: uppercase; padding: 2px 6px; border-radius: 2px; }
+                .gallery-grid { display: grid; grid-template-cols: 1fr; gap: 15px; }
+                @media (min-width: 768px) { .gallery-grid { grid-template-cols: repeat(2, 1fr); } }
+                .gallery-item { position: relative; height: 250px; overflow: hidden; border-radius: 4px; }
+                .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+                .gallery-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 15px; }
+                .contact-dashboard { width: 100%; max-width: 650px; margin: 0 auto; border-radius: 8px; padding: 40px 24px; }
+                .info-row { margin-bottom: 30px; text-align: center; }
+                .info-row h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+                .info-row a, .info-row p { display: block; font-size: calc(1.1rem + 0.5
