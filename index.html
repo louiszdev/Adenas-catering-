@@ -58,7 +58,7 @@
             margin-bottom: 10px;
         }
 
-        /* Fixed Navigation Bar */
+        /* FIXED NAV WITH ELEGANT SMOOTH ENTRANCE ANIMATION */
         nav {
             position: fixed;
             top: 0; left: 0; width: 100%;
@@ -71,6 +71,18 @@
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            
+            /* Luxury Entrance Config */
+            animation: elegantFadeDown 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        @keyframes elegantFadeDown {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .logo {
@@ -80,6 +92,11 @@
             color: var(--gold-premium);
             text-transform: uppercase;
             text-decoration: none;
+            transition: color 0.4s ease;
+        }
+
+        .logo:hover {
+            color: var(--text-light);
         }
 
         /* VIDEO CANVAS LAYOUT */
@@ -309,7 +326,7 @@
             line-height: 1.4;
         }
 
-        /* FIXED PREMIUM ICON LAYOUT FRAMEWORK */
+        /* PREMIUM ICON LAYOUT FRAMEWORK */
         .social-connect-box {
             border-top: 1px solid rgba(212, 175, 55, 0.2);
             padding-top: 30px;
@@ -350,7 +367,6 @@
             transition: all 0.3s ease;
         }
 
-        /* Premium active state feedback */
         .social-icon-btn:active, .social-icon-btn:hover {
             background: var(--gold-premium);
         }
@@ -403,6 +419,9 @@
             <span>Gastronomy Portfolio</span>
             Curated Culinary Concepts
         </div>
+        . . .
+``` *(Code block collapsed for delivery format)*
+```html
         <div class="menu-container">
             <div class="menu-tabs">
                 <button type="button" class="tab-btn active" id="tab-corporate">Corporate Lunches</button>
@@ -526,7 +545,7 @@
                         </svg>
                     </a>
 
-                    <a href="https://tr.ee/9v8Mb8ILqP" target="_blank" class="social-icon-btn" aria-label="TikTok">
+                    <a href="https://vm.tiktok.com/ZS92EXEm81dRf-MW8he/" target="_blank" class="social-icon-btn" aria-label="TikTok">
                         <svg viewBox="0 0 24 24">
                             <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.02 1.73 4.12 1.13 1.09 2.67 1.63 4.21 1.65v3.93c-1.5-.02-3-.5-4.22-1.41-.75-.56-1.37-1.28-1.83-2.12v7.74c.04 2.24-.92 4.43-2.62 5.88-1.99 1.69-4.8 2.22-7.24 1.34-2.45-.88-4.32-3.1-4.79-5.67-.62-3.37 1.13-6.81 4.25-8.08 1.13-.46 2.36-.61 3.56-.45v4.02c-.75-.2-1.55-.11-2.25.26-1.12.59-1.75 1.84-1.54 3.11.2 1.24 1.21 2.21 2.47 2.33 1.46.14 2.87-.83 3.15-2.27.08-.43.09-.87.09-1.31V.02z"/>
                         </svg>
@@ -542,16 +561,4 @@
     </footer>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const tabs = {
-                'tab-corporate': 'cat-corporate',
-                'tab-private': 'cat-private',
-                'tab-platters': 'cat-platters'
-            };
-
-            Object.keys(tabs).forEach(tabId => {
-                const button = document.getElementById(tabId);
-                if(button) {
-                    function runSwitch(e) {
-                        e.preventDefault();
-                        document.querySelectorAll('.menu-tabs but
+        documen
